@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue demo4</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="example">
+		<p>origin message: {{ message }}</p>
+		<p>computed message: {{ reversedMessage }}</p>
+	</div>
+
+	<div id="example2">
+		<p>firstname: {{ firstname }}</p>
+		<p>lastname: {{ lastname }}</p>
+		<p>fullname: {{ fullname }}</p>
+	</div>
+
+	
+	<script>
+		var example = new Vue({
+			el: '#example',
+			data: {
+				message: 'suoyue'
+			},
+			computed: {
+				reversedMessage: function() {
+					return this.message.split('').reverse().join('')
+				}
+			}
+		})
+
+		var example2 = new Vue({
+			el: '#example2',
+			data: {
+				firstname: 'suo',
+				lastname: 'yue',
+			},
+			computed: {
+				fullname: {
+					get: function() {
+						return this.firstname + ' ' + this.lastname;
+					},
+					set: function(newValue) {
+						var names = newValue.split(' ');
+						this.firstname = names[0];
+						this.lastname = names[names.length - 1];
+					}
+				}
+			}
+		})
+		example2.fullname = "shao suo";
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="watch-example">
+	<p>ask a y/n question</p>
+	<input v-model="question">
+	<p>{{ answer }}</p>
+</div>
+
+<script>
+	var watchExample = new Vue({
+		el: '#watch-example',
+		data: {
+			question: '',
+			answer: 'I will give your answer unless you are right'
+		},
+		watch: {
+			question: function(new Question) {
+				this.answer = 'waiting for you';
+				this.getAnswer();
+			}
+		},
+		methods: {
+			getAnswer: _.debounce(
+				function(){
+					
+				}
+				,
+				500
+				)
+		}
+	})
+</script>
+</body>
+</html>
