@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue demo6</title>
+	<script type="text/javascript" src="https://unpkg.com/vue"></script>
+	<style type="text/css">
+		.active {
+			color: green;
+		} 
+		.text-danger {
+			color: red;
+		}
+		.foo {
+			font-size: 20px;
+		}
+		.bar {
+			font-family: '微软雅黑';
+		}
+
+	</style>
+</head>
+<body>
+	<div id="class-example" class="static" 
+		v-bind:class="{ active: isActive, 'text-danger': hasError }">
+		suo yue
+	</div>
+
+	<script type="text/javascript">
+		var classExample = new Vue({
+			el: '#class-example',
+			data: {
+				isActive: true,
+				hasError: false
+			}
+		})
+	</script>
+
+	<div id="class-example2"
+		v-bind:class="[ activeClass, errorClass ]">
+		suo yue
+	</div>
+
+	<script type="text/javascript">
+		var classExample2 = new Vue({
+			el: '#class-example2',
+			data: {
+				activeClass: 'active',
+				errorClass: 'text-danger'
+			}
+		})
+	</script>
+
+	<my-component id="class-example3" 
+		v-bind:class="{ active: isActive }"> 
+	</my-component>
+
+	<script type="text/javascript">
+		Vue.component('my-component', {
+			template: '<p class="foo bar">suoyue</p>'
+		})
+		var classExample3 = new Vue({
+			el: '#class-example3',
+			data: {
+				isActive: true
+			}
+		})
+	</script>
+
+	<div id="style-example" 
+		v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">
+		suo yue
+	</div>
+
+	<script type="text/javascript">
+		var styleExample = new Vue({
+			el: '#style-example',
+			data: {
+				activeColor: 'red',
+				fontSize: 20
+			}
+		})
+	</script>
+
+	<div id="style-example2"
+		v-bind:style="styleObject">
+		suo yue
+	</div>
+
+	<script type="text/javascript">
+		var styleExample2 = new Vue({
+			el: '#style-example2',
+			data: {
+				styleObject: {
+					color: 'green',
+					fontSize: '20px'
+				}
+			}
+		})
+	</script>
+
+</body>
+</html>

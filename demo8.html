@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<ul id="for-example">
+		<li v-for="item in items">
+			{{ item.message }}
+		</li>
+	</ul>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#for-example',
+			data: {
+				items: [
+					{ message: 'html' },
+					{ message: 'css' },
+					{ message: 'javascript'}
+				]
+			}
+		})
+	</script>
+
+	<ul id="for-example2">
+		<li v-for="value in object"> {{ value }} </li>
+	</ul>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#for-example2',
+			data: {
+				object: {
+					firstName: 'suo',
+					lastName: 'yue',
+					age: 22
+				}
+			}
+		})
+	</script>
+
+	<ul id="for-example3">
+		<li v-for="n in evenNumbers"> {{ n }} </li>
+	</ul>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#for-example3',
+			data: {
+				numbers: [1, 2, 3, 4, 5]
+			},
+			computed: {
+				evenNumbers: function() {
+					return this.numbers.filter(function(number) {
+						return number % 2 == 0
+					})
+				}
+			}
+		})
+	</script>
+
+	<div id="for-example4">
+		<span v-for="n in 10">{{ n }}</span>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: "#for-example4"
+		})
+	</script>
+
+	<ul id="for-example5">
+		<template v-for="item in items">
+			<li>{{ item.msg }}</li>
+			<li class="devider">ooo</li>
+		</template>
+	</ul>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#for-example5',
+			data: {
+				items: [
+					{ msg: 'suo' },
+					{ msg: 'smile' },
+					{ msg: 'hello' }
+				]
+			}
+		})
+	</script>
+
+	<ul id="for-example6">
+		<li v-for="todo in todoList" v-if="!todo.isComplete">{{ todo.text }}</li>
+	</ul>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#for-example6',
+			data: {
+				todoList: [
+					{ 
+						isComplete: true,
+						text: 'ps'
+					},
+					{
+						isComplete: false,
+						text: 'html'
+					},
+					{
+						isComplete: false,
+						text: 'css'
+					}
+				]
+			}
+		})
+	</script>
+</body>
+</html>
