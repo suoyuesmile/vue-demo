@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue demo9 v-on</title>
+	<script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="on-example">
+		<button v-on:click="counter += 1">click</button>
+		<p>{{ counter }}</p>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#on-example',
+			data: {
+				counter: 0
+			}
+		})
+	</script>
+
+	<div id="on-example2">
+		<button v-on:click="say('hi')">sayHI</button>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#on-example2',
+			methods: {
+				say: function(message) {
+					alert(message)
+				}
+			}
+		})
+	</script>
+
+	<div id="on-example3">
+		<button v-on:click="greet">greet</button>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#on-example3',
+			data: {
+				name: 'suoyue'
+			},
+			methods: {
+				greet: function (event) {
+					alert('hi ' + this.name);
+					if (event) {
+						alert(event.target.tagName)
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

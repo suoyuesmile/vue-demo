@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue demo10 v-model</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+	<div id="model-example">
+		<input type="text" v-model="message" placeholder="edit">
+		<p>{{ message }}</p>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example',
+			data: {
+				message: ''
+			}
+		})
+	</script>
+
+	<div id="model-example2">
+		<textarea name="test" id="test" cols="30" rows="10" v-model="message" placeholder="edit lines"></textarea>
+		<p>{{ message }}</p>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example2',
+			data: {
+				message: ''
+			}
+		})
+	</script>
+
+	<div id="model-example3">
+		<input type="checkbox" id="checkbox" v-model="checked">
+		<label for="checkbox">{{ checked }}</label>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example3',
+			data: {
+				checked: false
+			}
+		})
+	</script>
+
+	<div id="model-example4">
+		<input type="checkbox" name="" id="" value="suo" v-model="checkedNames">
+		<lable>suo</lable>
+		<input type="checkbox" name="" id="" value="yue" v-model="checkedNames">
+		<lable>yue</lable>
+		<input type="checkbox" name="" id="" value="smile" v-model="checkedNames">
+		<lable>smile</lable>
+		<br>
+		<lable>{{ checkedNames }}</lable>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example4',
+			data: {
+				checkedNames: []
+			}
+		})
+	</script>
+
+	<div id="model-example5">
+		<input type="radio" name="" id="" v-model="picked" value="suo">
+		<label for="">suo</label>
+		<input type="radio" name="" id="" v-model="picked" value="yue">
+		<label for="">yue</label>
+		<input type="radio" name="" id="" v-model="picked" value="smile">
+		<label for="">smile</label>
+		<br>
+		<label for="">{{ picked }}</label>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example5',
+			data: {
+				picked: ''
+			}
+		})
+	</script>
+
+	<div id="model-example6">
+		<select name="" id="" v-model="selected">
+			<option disable value="">请选择</option>
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+		</select>
+		<span>{{ selected }}</span>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example6',
+			data: {
+				selected: ''
+			}
+		})
+	</script>
+
+	<div id="model-example7">
+		<select name="" id="" multiple v-model="selected">
+			<option disable value="">请选择</option>
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+		</select>
+		<span>{{ selected }}</span>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example7',
+			data: {
+				selected: []
+			}
+		})
+	</script>
+
+	<div id="model-example8">
+		<select name="" id="" v-model="selected">
+			<option v-bind:value="option.value" v-for="option in options">{{ option.text }}</option>
+		</select>
+		<span>{{ selected }}</span>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#model-example8',
+			data: {
+				selected: 'one',
+				options: [
+					{ value: 'one', text: 'A' },
+					{ value: 'two', text: 'B' },
+					{ value: 'three', text: 'C' }
+				]
+			}
+		})
+	</script>
+<body>
+
+</body>
+</html>

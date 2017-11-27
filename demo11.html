@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue demo11 component</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="component-example">
+		<simple-component></simple-component>
+		<simple-component></simple-component>
+		<simple-component></simple-component>
+	</div>
+	<script type="text/javascript">
+		Vue.component('simple-component', {
+			template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+			data: function() {
+				return {
+					counter: 0
+				}
+			}
+		})
+		new Vue({
+			el: '#component-example'
+		})
+	</script>
+
+	<div id="component-example2">
+		<child message="suoyue"></child>
+	</div>
+
+	<script type="text/javascript">
+		Vue.component('child', {
+			props: ['message'],
+			template: '<label>{{ message }}</label>'
+		})
+		new Vue({
+			el: '#component-example2',
+		})
+	</script>
+
+	<div id="component-example3">
+		<input type="text" v-model="parentMsg">
+		<br>
+		<child3 v-bind:msg="parentMsg"></child3>
+	</div>
+	<script type="text/javascript">
+		Vue.component('child3', {
+			props: ['msg'],
+			template: '<label for="">{{ msg }}</label>'
+		})
+		new Vue({
+			el: '#component-example3',
+			data: {
+				parentMsg: ''
+			}
+		})
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue demo15 other</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="other-example">
+		<user-profile ref="profile"></user-profile>
+	</div>
+
+	<script type="text/javascript">
+		var parent = new Vue({
+			el: '#parent'
+		})
+		var child = parent.$ref.profile
+	</script>
+</body>
+</html>
