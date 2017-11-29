@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue demo transtion</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="utils/velocity.js"></script>
+	<link rel="stylesheet" type="text/css" href="utils/animate.css">
+	<style type="text/css">
+		/* transtion-example */
+		.fade-enter-active, .fade-leave-active {
+			transtion: opacity .5s;
+		}
+		.fade-enter, .fade-leave {
+			opacity: 0;
+		}
+	
+		/* transtion-example2 */
+		.slide-fade-enter-active {
+			transition: all .3s ease;
+		}
+		.slide-fade-leave-active {
+			transition: all .8s cubic-bezier(1.0, .5, .8, 1.0);
+		}
+		.slide-fade-enter, .slide-fade-leave-to {
+			transform: translateX(10px);
+			opacity: 0;
+		}
+
+		/* transtion-eaxmple3 */
+		.bounce-enter-active {
+			animation: bounce-in .5s;
+		}
+		.bounce-leave-active {
+			animation: bounce-in .5s reverse;
+		}
+		@keyframes bounce-in {
+			0% {
+				transform: scale(0);
+			}
+			50% {
+				transform: scale(1.5);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="transtion-example">
+		<button @click="show=!show">toggle</button>
+		<transtion name="fade">
+			<p v-if="show">suoyue</p>
+		</transtion>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#transtion-example',
+			data: {
+				show: true
+			}
+		})
+	</script>
+
+	<div id="transtion-example2">
+		<button @click="show=!show">toggle2</button>
+		<transtion name="slide-fade">
+			<p v-if="show">suoyue</p>
+		</transtion>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#transtion-example2',
+			data: {
+				show: true
+			}
+		})
+	</script>
+
+	<div id="transtion-example3">
+		<button @click="show = !show">toggle3</button>
+		<transition name="bounce">
+			<p v-if="show">suoyue</p>
+		</transition>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#transtion-example3',
+			data: {
+				show: true
+			}
+		})
+	</script>
+
+	<div id="transtion-example4">
+		<button @click="show = !show">toggle4</button>
+		<transtion name="custom-classes-transtion" enter-active-class="animated tada"	leave-active-class="animated bounceOutRight">
+			<p v-if="show">suoyue</p>
+		</transtion>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#transtion-example4',
+			data: {
+				show: true
+			}
+		})
+	</script>
+
+	<div id="transtion-example5">
+		<button @click="show = !show">toggle5</button>
+		<transtion @before-enter="beforeEnter" @enter="enter" @leave="leave" :css="false">
+			<p v-if="show">suoyue</p>
+		</transtion>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#transtion-example5',
+			data: {
+				show: false
+			},
+			methods: {
+				beforeEnter: function(el) {
+					el.style.opacity = 0
+					el.style.transformOrigin = 'left'
+				},
+				enter: function(el, done) {
+					Velocity(el, {
+						opacity:1, fontSize: '1.4em'
+					}, {
+						duration: 300
+					})
+					Velocity(el, {
+						fontSize: '1em'
+					}, {
+						complete: done
+					})
+				},
+				leave: function(el, done) {
+					Velocity(el, {
+						transtionX: '15px',
+						rotateZ: '50deg'
+					}, {
+						duration: 600
+					})
+					Velocity(el, {
+						rotateZ: '180deg'
+					}, {
+						loop: 2
+					})
+					Velocity(el, {
+						rotateZ: '45deg',
+						translateY: '30px',
+						translateX: '30px',
+						opacity: 0
+					}, {
+						complete: done
+					})
+				}
+			}
+		})
+	</script>
+
+	<div id="transtion-example6">
+		<transtion name="fade">
+			<table v-if="items.length > 0">
+				<tr>
+					<td v-for="item in items">{{ item.text }}</td>
+				</tr>
+			</table>	
+			<p v-else>no item</p>
+			<button @click="addItem">Add</button>
+			<button @click="removeItem">Remove</button>
+		</transtion>
+	</div>
+	
+	<script type="text/javascript">
+		new Vue({
+			el: '#transtion-example6',
+			data: {
+				items: [
+				{ text: 'a' },
+				{ text: 'b' },
+				{ text: 'c' }
+				]
+			},
+			methods: {
+				addItem: function() {
+					this.items.push({
+						text: this.items.length + 1
+					})
+				},
+				removeItem: function() {
+					this.items.pop()
+				}
+			}
+		})
+	</script>
+
+
+</body>
+</html>
